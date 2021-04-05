@@ -32,4 +32,35 @@ const signup = async (req, res, next) =>{
  
 }
 
+// 获取用户列表
+const list = async (req, res, next)=>{
+  res.set('content-type','application/json;charset=utf-8')
+  let usersList = await usersModel.list()
+  res.render('succ',{
+    data:JSON.stringify(usersList)
+  })
+}
+
+// 删除
+const remove = async (req, res, next)=>{
+  res.set('content-type','application/json;charset=utf-8')
+  const {id} = req.body
+  const result = await usersModel.remove(id)
+  if(result.n ==1 && result.ok == 1)  {
+    res.render('succ',{
+      data:JSON.stringify({
+        message:'删除成功！'
+      })
+    })
+  }else{
+      res.render('fail',{
+        data:JSON.stringify({
+          message:'删除失败！'
+        })
+      })
+  }
+}
+
 exports.signup = signup
+exports.list = list
+exports.remove = remove

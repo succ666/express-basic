@@ -1,9 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-const {signup} = require('../controllers/users')
+const {signup , list, remove} = require('../controllers/users')
 
-/* GET users listing. */
-router.post('/signup',signup);
+// 注册
+router.post('/signup', signup);
+
+// 获取注册用户
+router.get('/list', list)
+
+// 删除
+router.post('/remove', remove)
+
+
+
   
 module.exports = router;

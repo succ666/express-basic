@@ -12,8 +12,17 @@ const signup = ({username, password})=>{
   return users.save()
 }
 
+const list = ()=>{
+  return Users.find()
+}
+
+const remove = (id)=>{
+  return Users.remove({_id:id})
+}
 
 module.exports = {
   signup,
-  userfind
+  userfind,
+  list,
+  remove
 }
